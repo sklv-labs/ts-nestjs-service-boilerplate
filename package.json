@@ -22,14 +22,17 @@
         "test:cov": "jest --coverage",
         "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
         "test:e2e": "jest --config ./server/jest-e2e.json",
-        "type-check": "tsc --noEmit -p server/tsconfig.json"
+        "type-check": "tsc --noEmit -p server/tsconfig.json",
+        "yalc:add": "yalc add @sklv-labs/ts-nestjs-openapi",
+        "yalc:update": "yalc update @sklv-labs/ts-nestjs-openapi",
+        "yalc:remove": "yalc remove @sklv-labs/ts-nestjs-openapi"
     },
     "dependencies": {
         "@nestjs/common": "^11.1.11",
         "@nestjs/core": "^11.1.11",
         "@nestjs/platform-express": "^11.1.11",
         "@nestjs/swagger": "^11.2.4",
-        "@sklv-labs/ts-nestjs-openapi": "^0.1.0",
+        "@sklv-labs/ts-nestjs-openapi": "0.1.1",
         "reflect-metadata": "^0.2.2",
         "rxjs": "^7.8.2"
     },

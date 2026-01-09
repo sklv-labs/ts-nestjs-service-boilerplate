@@ -1,0 +1,68 @@
+{
+    "name": "@sklv-labs/ts-nestjs-service-boilerplate",
+    "version": "0.1.0",
+    "description": "NestJS service boilerplate",
+    "author": "sklv-labs",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/sklv-labs/ts-nestjs-service-boilerplate.git"
+    },
+    "scripts": {
+        "build": "nest build",
+        "start": "nest start",
+        "start:dev": "nest start --watch",
+        "start:debug": "nest start --debug --watch",
+        "start:prod": "node server/dist/src/main.js",
+        "format": "prettier --write \"server/src/**/*.ts\" \"server/src/**/*.json\"",
+        "lint": "eslint \"server/src/**/*.ts\"",
+        "lint:fix": "eslint \"server/src/**/*.ts\" --fix",
+        "test": "jest",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage",
+        "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+        "test:e2e": "jest --config ./server/jest-e2e.json",
+        "type-check": "tsc --noEmit -p server/tsconfig.json"
+    },
+    "dependencies": {
+        "@nestjs/common": "^11.1.11",
+        "@nestjs/core": "^11.1.11",
+        "@nestjs/platform-express": "^11.1.11",
+        "@nestjs/swagger": "^11.2.4",
+        "@sklv-labs/ts-nestjs-openapi": "^0.1.0",
+        "reflect-metadata": "^0.2.2",
+        "rxjs": "^7.8.2"
+    },
+    "devDependencies": {
+        "@commitlint/cli": "^20.3.1",
+        "@commitlint/config-conventional": "^20.3.1",
+        "@darraghor/eslint-plugin-nestjs-typed": "^7.1.12",
+        "@nestjs/cli": "^11.0.5",
+        "@nestjs/testing": "^11.1.11",
+        "@sklv-labs/ts-dev-configs": "0.1.4",
+        "@types/express": "^5.0.6",
+        "@types/jest": "^30.0.0",
+        "@types/node": "^25.0.3",
+        "@types/supertest": "^6.0.3",
+        "eslint": "^9.39.2",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-import-x": "^4.16.1",
+        "eslint-plugin-prettier": "^5.5.4",
+        "globals": "^17.0.0",
+        "jest": "^30.2.0",
+        "prettier": "^3.7.4",
+        "source-map-support": "^0.5.21",
+        "supertest": "^7.2.2",
+        "ts-jest": "^29.4.6",
+        "ts-loader": "^9.5.4",
+        "ts-node": "^10.9.2",
+        "tsconfig-paths": "^4.2.0",
+        "tsx": "^4.21.0",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.52.0",
+        "yalc": "^1.0.0-pre.53"
+    },
+    "engines": {
+        "node": ">=24.0.0"
+    }
+}

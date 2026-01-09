@@ -1,0 +1,36 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "prettier.prettier-vscode",
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": "explicit"
+    },
+    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.preferences.includePackageJsonAutoImports": "off",
+    "[typescript]": {
+        "editor.defaultFormatter": "prettier.prettier-vscode"
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "prettier.prettier-vscode"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "prettier.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "prettier.prettier-vscode"
+    },
+    "[json]": {
+        "editor.defaultFormatter": "prettier.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "prettier.prettier-vscode"
+    },
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/presets/**/tsconfig.json": false
+    },
+    "typescript.validate.enable": true,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": false
+}

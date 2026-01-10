@@ -1,27 +1,35 @@
+// eslint-disable-next-line import-x/order
+import { setupEnv } from './load-env';
+
+setupEnv();
+
 import { NestFactory } from '@nestjs/core';
 import { OpenApiModule } from '@sklv-labs/ts-nestjs-openapi';
 
 import { AppModule } from './app.module';
+import { ConfigService } from './config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  const port = process.env.PORT || 3000;
+  const config = app.get(ConfigService);
 
-  OpenApiModule.setup(app, {
-    title: 'My API',
-    description: 'My API description',
-    version: '1.0.0',
-    path: 'api/docs',
-    ui: 'scalar',
-    scalar: {
-      theme: 'mars',
-    },
-  });
+  app.setGlobalPrefix(config.globalPrefix);
 
-  await app.listen(port);
+  const isDocsEnabled = config.docs.enabled;
 
-  console.log(`Application is running on: http://localhost:${port}`);
-  console.log(`API documentation is running on: http://localhost:${port}/api/docs`);
+  if (isDocsEnabled) {
+    OpenApiModule.setup(app, config.getOpenApiOptions());
+  }
+
+  const { port, host } = config.server;
+  await app.listen(port, host);
+
+  const appUrl = await app.getUrl();
+  console.log(`Application is running on ${appUrl}`);
+
+  if (isDocsEnabled) {
+    console.log(`Swagger documentation available at ${appUrl}/${config.docs.path}`);
+  }
 }
 
 void bootstrap();

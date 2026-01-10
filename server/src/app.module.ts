@@ -1,22 +1,20 @@
 import { Module } from '@nestjs/common';
-import { OpenApiModule, OpenApiModuleOptions } from '@sklv-labs/ts-nestjs-openapi';
+import { ConfigModule } from '@sklv-labs/ts-nestjs-config';
+import { OpenApiModule } from '@sklv-labs/ts-nestjs-openapi';
 
 import { AppControllerTest } from './app.controller';
 import { AppService } from './app.service';
+import { ConfigService, validationSchema } from './config';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      validationSchema,
+      providers: [ConfigService],
+    }),
     OpenApiModule.forRootAsync({
-      useFactory: (): OpenApiModuleOptions => ({
-        title: 'My API',
-        description: 'My API description',
-        version: '1.0.0',
-        path: 'api/docs',
-        ui: 'scalar',
-        scalar: {
-          theme: 'default',
-        },
-      }),
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => config.getOpenApiOptions(),
     }),
   ],
   controllers: [AppControllerTest],

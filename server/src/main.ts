@@ -4,14 +4,20 @@ import { setupEnv } from './load-env';
 setupEnv();
 
 import { NestFactory } from '@nestjs/core';
+import { LoggerService } from '@sklv-labs/ts-nestjs-logger';
 import { OpenApiModule } from '@sklv-labs/ts-nestjs-openapi';
 
 import { AppModule } from './app.module';
 import { ConfigService } from './config';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    bufferLogs: true,
+  });
+  const logger = app.get(LoggerService);
   const config = app.get(ConfigService);
+
+  app.useLogger(logger);
 
   app.setGlobalPrefix(config.globalPrefix);
 
@@ -25,10 +31,10 @@ async function bootstrap() {
   await app.listen(port, host);
 
   const appUrl = await app.getUrl();
-  console.log(`Application is running on ${appUrl}`);
+  logger.log(`Application is running on ${appUrl}`);
 
   if (isDocsEnabled) {
-    console.log(`Swagger documentation available at ${appUrl}/${config.docs.path}`);
+    logger.log(`Swagger documentation available at ${appUrl}/${config.docs.path}`);
   }
 }
 
